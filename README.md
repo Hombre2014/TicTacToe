@@ -1,3 +1,3 @@
 # Readme
 
-## This is the TicTacToe gave
+## This is the TicTacToe game
