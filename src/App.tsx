@@ -33,20 +33,30 @@ function App() {
       return `Winner: ${winner}`;
     } else if (isDraw) {
       return "It's a draw!";
-    } else {
-      return `Next player: ${isXNext ? 'X' : 'O'}`;
     }
+    return null;
   };
+
+  const currentPlayer: Player = isXNext ? 'X' : 'O';
+  const playerColor = currentPlayer === 'X' ? '#e74c3c' : '#3498db';
+  const statusText = getStatus();
 
   return (
     <div className="game">
       <h1 className="game-title">Tic Tac Toe</h1>
       <div className={`game-info ${winner ? 'winner' : isDraw ? 'draw' : ''}`}>
-        {getStatus()}
+        {statusText ?? (
+          <>
+            Next player:{' '}
+            <span style={{ color: playerColor, fontWeight: 'bold' }}>
+              {currentPlayer}
+            </span>
+          </>
+        )}
       </div>
-      <Board 
-        squares={squares} 
-        onSquareClick={handleSquareClick} 
+      <Board
+        squares={squares}
+        onSquareClick={handleSquareClick}
       />
       <button className="reset-button" onClick={resetGame}>
         New Game
